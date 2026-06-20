@@ -1,6 +1,6 @@
 namespace Nexa.Domain.Entities;
 
-internal class SpendSummary
+public class SpendSummary
 {
     public int id { get; set; }
     public User user { get; set; }

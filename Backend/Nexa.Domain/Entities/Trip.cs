@@ -1,6 +1,6 @@
 namespace Nexa.Domain.Entities;
 
-internal class Trip
+public class Trip
 {
     public int id { get; set; }
     public User user { get; set; }

@@ -1,4 +1,5 @@
-internal interface IUserRepository
+using Nexa.Domain.Entities;
+public interface IUserRepository
 {
     Task<User> GetUserByIdAsync(Guid userId);
     Task<User> GetUserByEmailAsync(string email);

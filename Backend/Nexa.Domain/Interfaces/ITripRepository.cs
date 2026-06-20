@@ -1,4 +1,5 @@
-internal interface ITripRepository
+using Nexa.Domain.Entities;
+public interface ITripRepository
 {
     Task<Trip> GetTripByIdAsync(Guid tripId);
     Task<IEnumerable<Trip>> GetTripsByUserIdAsync(Guid userId);

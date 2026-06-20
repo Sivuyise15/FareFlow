@@ -8,3 +8,12 @@
 Nexa.API/obj/
 
 Nexa.API/bin
+
+Nexa.Core/obj/
+Nexa.Core/bin/
+
+Nexa.Domain/obj/
+Nexa.Domain/bin/
+
+Nexa.Infrastructure/obj/
+Nexa.Infrastructure/bin/
