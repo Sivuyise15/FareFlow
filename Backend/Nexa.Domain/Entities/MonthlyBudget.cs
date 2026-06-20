@@ -1,4 +1,6 @@
-internal class MontlyBudget
+namespace Nexa.Domain.Entities;
+
+internal class MonthlyBudget
 {
     public int id { get; set; }
     public User user { get; set; }

@@ -1,3 +1,4 @@
+namespace Nexa.Domain.Entities;
 
 internal class User
 {

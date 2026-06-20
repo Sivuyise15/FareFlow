@@ -1,3 +1,5 @@
+namespace Nexa.Domain.Entities;
+
 internal class EmailAccount
 {
     public int id { get; set; }
