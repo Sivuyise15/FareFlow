@@ -1,0 +1,10 @@
+# VS
+
+.vs/
+
+# Docker
+.dockerignore
+
+Nexa.API/obj/
+
+Nexa.API/bin
