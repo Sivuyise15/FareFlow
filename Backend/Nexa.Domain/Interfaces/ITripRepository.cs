@@ -1,9 +1,6 @@
 using Nexa.Domain.Entities;
 public interface ITripRepository
 {
-    Task<Trip> GetTripByIdAsync(Guid tripId);
-    Task<IEnumerable<Trip>> GetTripsByUserIdAsync(Guid userId);
-    Task AddTripAsync(Trip trip);
-    Task UpdateTripAsync(Trip trip);
-    Task DeleteTripAsync(Guid tripId);
+    Task<bool> ExistsByEmailMessageIdAsync(string emailMessageId);
+    Task SaveAsync(Trip trip);
 }

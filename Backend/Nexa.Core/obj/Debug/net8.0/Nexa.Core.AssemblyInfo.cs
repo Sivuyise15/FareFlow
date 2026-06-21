@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nexa.Core")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b36683d39900864a01a28dfd252317c3a800784")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b1dce4b7e618fa3bb4d2b5f48b39b3e1a270377a")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nexa.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nexa.Core")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
