@@ -1,6 +1,6 @@
 using Nexa.Domain.Entities;
 
-namespace Nexa.Core.Entities;
+namespace Nexa.Domain.Interfaces;
 
 public interface IEmailParser
 {
