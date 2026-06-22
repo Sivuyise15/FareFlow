@@ -5,5 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nexa.Core\Nexa.Core.csproj" />
+    <ProjectReference Include="..\Nexa.Domain\Nexa.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.75.0" />
+    <PackageReference Include="Google.Apis.Gmail.v1" Version="1.8.1.20" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.6.13" />
+  </ItemGroup>
 
 </Project>
