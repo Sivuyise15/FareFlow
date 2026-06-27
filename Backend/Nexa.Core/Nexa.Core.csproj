@@ -7,6 +7,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../Nexa.Domain/Nexa.Domain.csproj" />
+    <ProjectReference Include="..\Nexa.Infrastructure\Nexa.Infrastructure.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Apis.Auth" Version="1.75.0" />
   </ItemGroup>
 
 </Project>

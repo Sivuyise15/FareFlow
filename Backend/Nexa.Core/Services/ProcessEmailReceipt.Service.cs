@@ -1,7 +1,7 @@
 using Nexa.Domain.Entities;
 using Nexa.Domain.Interfaces;
 
-namespace Nexa.Application.Services;
+namespace Nexa.Core.Services;
 
 public class ProcessEmailReceiptsService
 {

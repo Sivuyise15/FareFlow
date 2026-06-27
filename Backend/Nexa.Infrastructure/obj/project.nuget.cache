@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "FFMIqAzBcMo=",
+  "dgSpecHash": "ZyQt2Xdef+k=",
   "success": true,
-  "projectFilePath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+  "projectFilePath": "c:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis\\1.75.0\\google.apis.1.75.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis.auth\\1.75.0\\google.apis.auth.1.75.0.nupkg.sha512",

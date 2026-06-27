@@ -1089,29 +1089,6 @@
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
-      },
-      "Nexa.Core/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "dependencies": {
-          "Nexa.Domain": "1.0.0"
-        },
-        "compile": {
-          "bin/placeholder/Nexa.Core.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Nexa.Core.dll": {}
-        }
-      },
-      "Nexa.Domain/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v8.0",
-        "compile": {
-          "bin/placeholder/Nexa.Domain.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Nexa.Domain.dll": {}
-        }
       }
     }
   },
@@ -3744,25 +3721,13 @@
         "system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
         "system.xml.xpath.xmldocument.nuspec"
       ]
-    },
-    "Nexa.Core/1.0.0": {
-      "type": "project",
-      "path": "../Nexa.Core/Nexa.Core.csproj",
-      "msbuildProject": "../Nexa.Core/Nexa.Core.csproj"
-    },
-    "Nexa.Domain/1.0.0": {
-      "type": "project",
-      "path": "../Nexa.Domain/Nexa.Domain.csproj",
-      "msbuildProject": "../Nexa.Domain/Nexa.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Google.Apis.Auth >= 1.75.0",
       "Google.Apis.Gmail.v1 >= 1.8.1.20",
-      "HtmlAgilityPack >= 1.6.13",
-      "Nexa.Core >= 1.0.0",
-      "Nexa.Domain >= 1.0.0"
+      "HtmlAgilityPack >= 1.6.13"
     ]
   },
   "packageFolders": {
@@ -3771,11 +3736,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+      "projectUniqueName": "c:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
       "projectName": "Nexa.Infrastructure",
-      "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+      "projectPath": "c:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\SIVUYISE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\obj\\",
+      "outputPath": "c:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\SIVUYISE\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3792,14 +3757,7 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
-          "projectReferences": {
-            "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Core\\Nexa.Core.csproj": {
-              "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Core\\Nexa.Core.csproj"
-            },
-            "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {
-              "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
