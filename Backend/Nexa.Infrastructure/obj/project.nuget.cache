@@ -1,14 +1,17 @@
 {
   "version": 2,
-  "dgSpecHash": "ZyQt2Xdef+k=",
+  "dgSpecHash": "CLaaOxtMD6w=",
   "success": true,
-  "projectFilePath": "c:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis\\1.75.0\\google.apis.1.75.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis.auth\\1.75.0\\google.apis.auth.1.75.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis.core\\1.75.0\\google.apis.core.1.75.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis.gmail.v1\\1.8.1.20\\google.apis.gmail.v1.1.8.1.20.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\htmlagilitypack\\1.6.13\\htmlagilitypack.1.6.13.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.extensions.configuration\\10.0.9\\microsoft.extensions.configuration.10.0.9.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\10.0.9\\microsoft.extensions.configuration.abstractions.10.0.9.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.extensions.primitives\\10.0.9\\microsoft.extensions.primitives.10.0.9.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\newtonsoft.json\\13.0.4\\newtonsoft.json.13.0.4.nupkg.sha512",
@@ -67,14 +70,19 @@
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
-    "C:\\Users\\SIVUYISE\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.31\\microsoft.windowsdesktop.app.ref.8.0.31.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.31\\microsoft.netcore.app.ref.8.0.31.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.31\\microsoft.aspnetcore.app.ref.8.0.31.nupkg.sha512"
   ],
   "logs": [
     {
       "code": "NU1701",
       "level": "Warning",
-      "warningLevel": 1,
       "message": "Package 'Google.Apis.Gmail.v1 1.8.1.20' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
       "libraryId": "Google.Apis.Gmail.v1",
       "targetGraphs": [
         "net8.0"

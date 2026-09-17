@@ -9,7 +9,7 @@ public class EmailAccount
     public string? emailAddress { get; set; }
     public string accessToken { get; set; }
     public string refreshToken { get; set; }
-    public ProviderType? provider { get; set; }
     public DateTime? tokenExpiry { get; set; }
+    public ProviderType? provider { get; set; }
 
 }

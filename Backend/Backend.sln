@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nexa.API", "Nexa.API\Nexa.API.csproj", "{14F2413B-03A5-4603-A552-4470028AEF67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nexa.API", "Nexa.API\Nexa.API.csproj", "{14F2413B-03A5-4603-A552-4470028AEF67}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nexa.Infrastructure", "Nexa.Infrastructure\Nexa.Infrastructure.csproj", "{EC1AA851-07CF-4BD0-845B-D90858E6709A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nexa.Core", "Nexa.Core\Nexa.Core.csproj", "{12568C9F-31A9-4391-B025-8E69729EB8CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nexa.Domain", "Nexa.Domain\Nexa.Domain.csproj", "{0AA112B7-A0A9-48F0-B83A-1841E6DB3FB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +21,18 @@ Global
 		{14F2413B-03A5-4603-A552-4470028AEF67}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14F2413B-03A5-4603-A552-4470028AEF67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14F2413B-03A5-4603-A552-4470028AEF67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC1AA851-07CF-4BD0-845B-D90858E6709A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC1AA851-07CF-4BD0-845B-D90858E6709A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC1AA851-07CF-4BD0-845B-D90858E6709A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC1AA851-07CF-4BD0-845B-D90858E6709A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{12568C9F-31A9-4391-B025-8E69729EB8CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12568C9F-31A9-4391-B025-8E69729EB8CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12568C9F-31A9-4391-B025-8E69729EB8CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12568C9F-31A9-4391-B025-8E69729EB8CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0AA112B7-A0A9-48F0-B83A-1841E6DB3FB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0AA112B7-A0A9-48F0-B83A-1841E6DB3FB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0AA112B7-A0A9-48F0-B83A-1841E6DB3FB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0AA112B7-A0A9-48F0-B83A-1841E6DB3FB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

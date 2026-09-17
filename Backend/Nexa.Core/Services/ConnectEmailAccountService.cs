@@ -24,8 +24,14 @@ public class ConnectEmailAccountService
     {
         // 1. Exchange the auth code Google sent to mobile for real tokens
         TokenResponse tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode);
+        Console.WriteLine($"Access Token: {tokens.AccessToken}");
+        Console.WriteLine($"Refresh Token: {tokens.RefreshToken}");
+        Console.WriteLine($"Expires In: {tokens.ExpiresInSeconds} seconds");
 
-        // 2. Build the EmailAccount entity
+        // 2. tokens now contains the access token, refresh token, and expiration time. You can use these tokens to make authenticated requests to Gmail on behalf of the user.
+        // We also have to store these tokens securely in our database for future use, especially the refresh token, which allows us to obtain new access tokens without requiring the user to re-authenticate.
+
+        // 3. Build the EmailAccount entity
         // var emailAccount = new EmailAccount
         // {
         //     user = await _userRepository.GetByIdAsync(userId),
@@ -36,7 +42,7 @@ public class ConnectEmailAccountService
         //     provider = ProviderType.Gmail
         // };
 
-        // // 3. Save to database
+        // // 4. Save to database
         // await _emailAccountRepository.SaveAsync(emailAccount);
     }
 }

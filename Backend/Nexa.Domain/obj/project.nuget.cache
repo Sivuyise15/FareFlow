@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "8Dhq4ebZH1sEDR7XmPiM/9zivmF0BZ5PpH9C541opvdb2XPuGMQtdle53vebicP3CFVoDd4EHKSJPDoOBh/aew==",
+  "dgSpecHash": "/0ErR2gK1Dk=",
   "success": true,
-  "projectFilePath": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/Nexa.Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\SIVUYISE\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\8.0.31\\microsoft.windowsdesktop.app.ref.8.0.31.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.netcore.app.ref\\8.0.31\\microsoft.netcore.app.ref.8.0.31.nupkg.sha512",
+    "C:\\Users\\SIVUYISE\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\8.0.31\\microsoft.aspnetcore.app.ref.8.0.31.nupkg.sha512"
+  ],
   "logs": []
 }

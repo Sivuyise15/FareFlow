@@ -1,4 +1,5 @@
-
+using Nexa.Core.Services;
+using Nexa.Infrastructure.Email;
 
 namespace Nexa.API
 {
@@ -15,6 +16,13 @@ namespace Nexa.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Services
+            builder.Services.AddScoped<ConnectEmailAccountService>();
+
+            // Repositories
+
+            // Gmail
+            builder.Services.AddScoped<IGmailClient, GmailClient>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,7 +32,7 @@ namespace Nexa.API
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
