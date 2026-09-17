@@ -1,4 +1,4 @@
-using Google.Apis.Auth.OAuth2.Responses;
+using Nexa.Domain.Entities;
 using Nexa.Infrastructure.Email;
 
 namespace Nexa.Core.Services;
@@ -23,10 +23,10 @@ public class ConnectEmailAccountService
     public async Task ExecuteAsync(int userId, string authCode, string emailAddress)
     {
         // 1. Exchange the auth code Google sent to mobile for real tokens
-        TokenResponse tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode);
-        Console.WriteLine($"Access Token: {tokens.AccessToken}");
-        Console.WriteLine($"Refresh Token: {tokens.RefreshToken}");
-        Console.WriteLine($"Expires In: {tokens.ExpiresInSeconds} seconds");
+        OAuthToken tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode);
+        Console.WriteLine($"Access Token: {tokens.accessToken}");
+        Console.WriteLine($"Refresh Token: {tokens.refreshToken}");
+        Console.WriteLine($"Expires In: {tokens.expiry} seconds");
 
         // 2. tokens now contains the access token, refresh token, and expiration time. You can use these tokens to make authenticated requests to Gmail on behalf of the user.
         // We also have to store these tokens securely in our database for future use, especially the refresh token, which allows us to obtain new access tokens without requiring the user to re-authenticate.
@@ -36,9 +36,9 @@ public class ConnectEmailAccountService
         // {
         //     user = await _userRepository.GetByIdAsync(userId),
         //     emailAddress = emailAddress,
-        //     accessToken = tokens.AccessToken,
-        //     refreshToken = tokens.RefreshToken,
-        //     tokenExpiry = DateTime.UtcNow.AddSeconds(tokens.ExpiresInSeconds ?? 3600),
+        //     accessToken = tokens.accessToken,
+        //     refreshToken = tokens.refreshToken,
+        //     tokenExpiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
         //     provider = ProviderType.Gmail
         // };
 

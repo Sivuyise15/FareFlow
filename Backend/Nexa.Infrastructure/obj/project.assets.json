@@ -52,19 +52,19 @@
           }
         }
       },
-      "Google.Apis.Gmail.v1/1.8.1.20": {
+      "Google.Apis.Gmail.v1/1.75.0.4225": {
         "type": "package",
         "dependencies": {
-          "Google.Apis": "1.8.1",
-          "Google.Apis.Auth": "1.8.1"
+          "Google.Apis": "1.75.0",
+          "Google.Apis.Auth": "1.75.0"
         },
         "compile": {
-          "lib/portable-net4+sl4+wp71+win8/Google.Apis.Gmail.v1.dll": {
+          "lib/net6.0/Google.Apis.Gmail.v1.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/portable-net4+sl4+wp71+win8/Google.Apis.Gmail.v1.dll": {
+          "lib/net6.0/Google.Apis.Gmail.v1.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -88,11 +88,11 @@
           }
         }
       },
-      "Microsoft.Extensions.Configuration/10.0.9": {
+      "Microsoft.Extensions.Configuration/10.0.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Configuration.Abstractions": "10.0.9",
-          "Microsoft.Extensions.Primitives": "10.0.9"
+          "Microsoft.Extensions.Configuration.Abstractions": "10.0.12",
+          "Microsoft.Extensions.Primitives": "10.0.12"
         },
         "compile": {
           "lib/net8.0/Microsoft.Extensions.Configuration.dll": {
@@ -108,10 +108,10 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Configuration.Abstractions/10.0.9": {
+      "Microsoft.Extensions.Configuration.Abstractions/10.0.12": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "10.0.9"
+          "Microsoft.Extensions.Primitives": "10.0.12"
         },
         "compile": {
           "lib/net8.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
@@ -127,7 +127,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Primitives/10.0.9": {
+      "Microsoft.Extensions.Primitives/10.0.12": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.Extensions.Primitives.dll": {
@@ -1224,18 +1224,26 @@
         "lib/netstandard2.0/Google.Apis.Core.xml"
       ]
     },
-    "Google.Apis.Gmail.v1/1.8.1.20": {
-      "sha512": "oAi6wxBgTToTTNZY0UGyp7yWR1LZyFB61ADgODHVbOPpru9AgNyS3HUbPygUdiiQVIQDYlFpeLg1SomtoBq15A==",
+    "Google.Apis.Gmail.v1/1.75.0.4225": {
+      "sha512": "aCJpQnalUcOVUBcG0UCteoPd4X+Ex4n9mGyY6zC0eVVIbfBPAePzCjLBjrxYyOVfdB5QV3ymtvorhfcf3SOsOQ==",
       "type": "package",
-      "path": "google.apis.gmail.v1/1.8.1.20",
+      "path": "google.apis.gmail.v1/1.75.0.4225",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "google.apis.gmail.v1.1.8.1.20.nupkg.sha512",
+        "LICENSE",
+        "NuGetIcon.png",
+        "google.apis.gmail.v1.1.75.0.4225.nupkg.sha512",
         "google.apis.gmail.v1.nuspec",
-        "lib/portable-net4+sl4+wp71+win8/Google.Apis.Gmail.v1.dll",
-        "lib/portable-net4+sl4+wp71+win8/Google.Apis.Gmail.v1.pdb",
-        "lib/portable-net4+sl4+wp71+win8/Google.Apis.Gmail.v1.xml"
+        "lib/net462/Google.Apis.Gmail.v1.dll",
+        "lib/net462/Google.Apis.Gmail.v1.pdb",
+        "lib/net462/Google.Apis.Gmail.v1.xml",
+        "lib/net6.0/Google.Apis.Gmail.v1.dll",
+        "lib/net6.0/Google.Apis.Gmail.v1.pdb",
+        "lib/net6.0/Google.Apis.Gmail.v1.xml",
+        "lib/netstandard2.0/Google.Apis.Gmail.v1.dll",
+        "lib/netstandard2.0/Google.Apis.Gmail.v1.pdb",
+        "lib/netstandard2.0/Google.Apis.Gmail.v1.xml"
       ]
     },
     "HtmlAgilityPack/1.6.13": {
@@ -1286,10 +1294,10 @@
         "lib/uap10.0/HtmlAgilityPack.pri"
       ]
     },
-    "Microsoft.Extensions.Configuration/10.0.9": {
-      "sha512": "woZsWLhOQsASuxbmgiZJqiGUBNo3IjRdXC92xt8rRokza+P6/nIsnzq7sm9Or6ZYcRl2kL1ufj8HVzp1QlPTXw==",
+    "Microsoft.Extensions.Configuration/10.0.12": {
+      "sha512": "e3IPP32CRNL031VZJAUTlCTG0YN7WFh4mN3fsSHTDQCJB+3+f0jGycv4fXk3rrftaY3B85XrQaj7sRthrOsavg==",
       "type": "package",
-      "path": "microsoft.extensions.configuration/10.0.9",
+      "path": "microsoft.extensions.configuration/10.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1310,15 +1318,15 @@
         "lib/net9.0/Microsoft.Extensions.Configuration.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
-        "microsoft.extensions.configuration.10.0.9.nupkg.sha512",
+        "microsoft.extensions.configuration.10.0.12.nupkg.sha512",
         "microsoft.extensions.configuration.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Abstractions/10.0.9": {
-      "sha512": "qGhRPd3VxfLV9UqatVOiD9mAeUbj2KiMwGFYC5uXlzExiZQoe4X/hdmzGIU7BQjNLTqCnnbTHVyBglG3668/HA==",
+    "Microsoft.Extensions.Configuration.Abstractions/10.0.12": {
+      "sha512": "8xaGcvS/qZ1otoxPQCEJkNva389CVL/plNcvIETZhQTETYdRkYDPEYhUMoAGONo4FU45ufdfE0j29AfWVVj0wA==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.abstractions/10.0.9",
+      "path": "microsoft.extensions.configuration.abstractions/10.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1339,15 +1347,15 @@
         "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
-        "microsoft.extensions.configuration.abstractions.10.0.9.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.10.0.12.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Primitives/10.0.9": {
-      "sha512": "fmEbAUFsaIKirgLt/lYhuFRBwhcSJN31jjHgCdbQxJiWOum6EdLjkbgGuukSP9z/a+9LibaxII/kF+GwOXgC4g==",
+    "Microsoft.Extensions.Primitives/10.0.12": {
+      "sha512": "dYfCLR52UA+3DL7C4I/pvSaRPkNqxrUAQmbFL2u0zvYKKzqgrFCJl08Df+F1aYc8leu9JvpC9bsURUdpExcBXQ==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/10.0.9",
+      "path": "microsoft.extensions.primitives/10.0.12",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1368,7 +1376,7 @@
         "lib/net9.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.10.0.9.nupkg.sha512",
+        "microsoft.extensions.primitives.10.0.12.nupkg.sha512",
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -3884,9 +3892,9 @@
     "net8.0": [
       "Google.Apis >= 1.75.0",
       "Google.Apis.Auth >= 1.75.0",
-      "Google.Apis.Gmail.v1 >= 1.8.1.20",
+      "Google.Apis.Gmail.v1 >= 1.75.0",
       "HtmlAgilityPack >= 1.6.13",
-      "Microsoft.Extensions.Configuration >= 10.0.9",
+      "Microsoft.Extensions.Configuration >= 10.0.12",
       "Nexa.Domain >= 1.0.0"
     ]
   },
@@ -3956,7 +3964,7 @@
           },
           "Google.Apis.Gmail.v1": {
             "target": "Package",
-            "version": "[1.8.1.20, )"
+            "version": "[1.75.0, )"
           },
           "HtmlAgilityPack": {
             "target": "Package",
@@ -3964,7 +3972,7 @@
           },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
-            "version": "[10.0.9, )"
+            "version": "[10.0.12, )"
           }
         },
         "imports": [
@@ -3978,20 +3986,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[8.0.31, 8.0.31]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[8.0.31, 8.0.31]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[8.0.31, 8.0.31]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -4003,10 +3997,10 @@
   },
   "logs": [
     {
-      "code": "NU1701",
+      "code": "NU1603",
       "level": "Warning",
       "warningLevel": 1,
-      "message": "Package 'Google.Apis.Gmail.v1 1.8.1.20' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "message": "Nexa.Infrastructure depends on Google.Apis.Gmail.v1 (>= 1.75.0) but Google.Apis.Gmail.v1 1.75.0 was not found. Google.Apis.Gmail.v1 1.75.0.4225 was resolved instead.",
       "libraryId": "Google.Apis.Gmail.v1",
       "targetGraphs": [
         "net8.0"

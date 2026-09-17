@@ -1,11 +1,10 @@
-using Google.Apis.Auth.OAuth2.Responses;
-using Nexa.Domain.Entities;
+﻿using Nexa.Domain.Entities;
 
 namespace Nexa.Infrastructure.Email;
 
 public interface IGmailClient
 {
-    public Task<TokenResponse> ExchangeCodeForTokensAsync(string authCode);
-    public Task<TokenResponse> RefreshAccessTokenAsync(string refreshToken);
-    public Task<List<RawEmail>> GetEmailsAsync(string accessToken, string userId);
+    Task<OAuthToken> ExchangeCodeForTokensAsync(string authCode);
+    Task<OAuthToken> RefreshAccessTokenAsync(string refreshToken);
+    Task<List<RawEmail>> GetEmailsAsync(string accessToken, string userId);
 }

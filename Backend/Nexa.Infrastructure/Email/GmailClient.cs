@@ -3,14 +3,16 @@ using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
 using Microsoft.Extensions.Configuration;
 using Google.Apis.Gmail.v1;
+using Google.Apis.Gmail.v1.Data;
 using Google.Apis.Services;
 using Nexa.Domain.Entities;
 using System.Text;
 
 namespace Nexa.Infrastructure.Email;
 
-public class GmailClient : IGmailClient
+public class GmailClient : IGmailClient, Nexa.Domain.Interfaces.IGmailClient
 {
+    private const string TokenStoreUserId = "nexa-google-auth";
     private readonly string _clientId;
     private readonly string _clientSecret;
 
@@ -40,29 +42,39 @@ public class GmailClient : IGmailClient
             });
     }
 
-    public async Task<TokenResponse> ExchangeCodeForTokensAsync(string authCode)
+    public async Task<OAuthToken> ExchangeCodeForTokensAsync(string authCode)
     {
         var flow = CreateAuthorizationCodeFlow();
 
         var token = await flow.ExchangeCodeForTokenAsync(
-            "sivuyise977@gmail.com", // userId, can be any string
-            authCode, // the authorization code received from the OAuth2 callback
-            "http://localhost", // redirectUri, must match the one used in the authorization request
-            CancellationToken.None);  // 
+            TokenStoreUserId,
+            authCode,
+            "https://developers.google.com/oauthplayground",  //the redirect uri used in the OAuth2 flow
+            CancellationToken.None);
 
-        return token; // contains AccessToken, RefreshToken, ExpiresInSeconds
+        return new OAuthToken
+        {
+            accessToken = token.AccessToken,
+            refreshToken = token.RefreshToken,
+            expiry = (int)(token.ExpiresInSeconds ?? 0)
+        };
     }
 
-    public async Task<TokenResponse> RefreshAccessTokenAsync(string refreshToken)
+    public async Task<OAuthToken> RefreshAccessTokenAsync(string refreshToken)
     {
         var flow = CreateAuthorizationCodeFlow();
 
         var token = await flow.RefreshTokenAsync(
-            "sivuyise977@gmail.com", // userId, can be any string
-            refreshToken, // the refresh token
-            CancellationToken.None);  // 
+            TokenStoreUserId,
+            refreshToken,
+            CancellationToken.None);
 
-        return token; // contains AccessToken, RefreshToken, ExpiresInSeconds   
+        return new OAuthToken
+        {
+            accessToken = token.AccessToken,
+            refreshToken = token.RefreshToken,
+            expiry = (int)(token.ExpiresInSeconds ?? 0)
+        };
 
     }
 
@@ -89,7 +101,7 @@ public class GmailClient : IGmailClient
         var listRequest = service.Users.Messages.List(userId);
         listRequest.Q = query;
 
-        var listResponse = await listRequest.ExecuteAsync();
+        var listResponse = listRequest.Execute();
 
         if (listResponse.Messages is null || !listResponse.Messages.Any())
             return results;
@@ -97,9 +109,9 @@ public class GmailClient : IGmailClient
         // Step 2 — fetch full email for each ID
         foreach (var message in listResponse.Messages)
         {
-            var fullMessage = await service.Users.Messages
+            var fullMessage = service.Users.Messages
                 .Get(userId, message.Id)
-                .ExecuteAsync();
+                .Execute();
 
             var sender = fullMessage.Payload.Headers
                 .FirstOrDefault(h => h.Name == "From")?.Value ?? string.Empty;
@@ -112,7 +124,7 @@ public class GmailClient : IGmailClient
             results.Add(new RawEmail
             {
                 messageId = message.Id,
-                senderAddress = sender,
+                senderEmail = sender,
                 body = body,
                 receivedAt = DateTime.TryParse(dateHeader, out var date)
                     ? date
@@ -163,6 +175,11 @@ public class GmailClient : IGmailClient
         }
 
         return string.Empty;
+    }
+
+    public async Task<IEnumerable<RawEmail>> FetchRideReceiptsAsync(string accessToken, DateTime from)
+    {
+        return await GetEmailsAsync(accessToken, "me");
     }
 
 

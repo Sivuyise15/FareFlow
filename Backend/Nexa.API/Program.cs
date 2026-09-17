@@ -23,6 +23,7 @@ namespace Nexa.API
 
             // Gmail
             builder.Services.AddScoped<IGmailClient, GmailClient>();
+            builder.Services.AddScoped<Nexa.Domain.Interfaces.IGmailClient, GmailClient>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
