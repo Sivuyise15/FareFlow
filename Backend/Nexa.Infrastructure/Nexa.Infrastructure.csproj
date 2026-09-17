@@ -11,6 +11,7 @@
     <PackageReference Include="Google.Apis.Gmail.v1" Version="1.75.0" />
     <PackageReference Include="HtmlAgilityPack" Version="1.6.13" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.12" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nexa.Domain\Nexa.Domain.csproj" />
