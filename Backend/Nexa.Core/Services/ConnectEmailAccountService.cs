@@ -1,23 +1,26 @@
 using Nexa.Domain.Entities;
 using Nexa.Infrastructure.Email;
+using Nexa.Domain.Shared;
+using Nexa.Infrastructure.Persistent;
+using Nexa.Domain.Interfaces;
 
 namespace Nexa.Core.Services;
 
 public class ConnectEmailAccountService
 {
     private readonly IGmailClient _gmailClient;
-    // private readonly IEmailAccountRepository _emailAccountRepository;
-    // private readonly IUserRepository _userRepository;
+    private readonly IEmailAccountRepository _emailAccountRepository;
+    private readonly IUserRepository _userRepository;
 
     public ConnectEmailAccountService(
-        IGmailClient gmailClient
-        // IEmailAccountRepository emailAccountRepository,
-        // IUserRepository userRepository
+        IGmailClient gmailClient,
+         IEmailAccountRepository emailAccountRepository,
+         IUserRepository userRepository 
         )
     {
         _gmailClient = gmailClient;
-        // _emailAccountRepository = emailAccountRepository;
-        // _userRepository = userRepository;
+        _emailAccountRepository = emailAccountRepository;
+        _userRepository = userRepository;
     }
 
     public async Task ExecuteAsync(int userId, string authCode, string emailAddress)
@@ -28,11 +31,8 @@ public class ConnectEmailAccountService
         Console.WriteLine($"Refresh Token: {tokens.refreshToken}");
         Console.WriteLine($"Expires In: {tokens.expiry} seconds");
 
-        // 2. tokens now contains the access token, refresh token, and expiration time. You can use these tokens to make authenticated requests to Gmail on behalf of the user.
-        // We also have to store these tokens securely in our database for future use, especially the refresh token, which allows us to obtain new access tokens without requiring the user to re-authenticate.
-
         // 3.Build the EmailAccount entity
-        /*var emailAccount = new EmailAccount
+        var emailAccount = new EmailAccount
         {
             user = await _userRepository.GetByIdAsync(userId),
             emailAddress = emailAddress,
@@ -40,9 +40,9 @@ public class ConnectEmailAccountService
             refreshToken = tokens.refreshToken,
             tokenExpiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
             provider = ProviderType.Gmail
-        };*/
+        };
 
         // // 4. Save to database
-        // await _emailAccountRepository.SaveAsync(emailAccount);
+        await _emailAccountRepository.SaveAsync(emailAccount);
     }
 }

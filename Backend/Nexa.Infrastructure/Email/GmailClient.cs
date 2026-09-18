@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Nexa.Infrastructure.Email;
 
-public class GmailClient : IGmailClient, Nexa.Domain.Interfaces.IGmailClient
+public class GmailClient : IGmailClient
 {
     private const string TokenStoreUserId = "nexa-google-auth";
     private readonly string _clientId;

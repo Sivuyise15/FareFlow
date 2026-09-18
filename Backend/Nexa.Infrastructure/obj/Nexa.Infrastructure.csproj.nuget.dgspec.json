@@ -1,29 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Infrastructure/Nexa.Infrastructure.csproj": {}
+    "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj": {}
   },
   "projects": {
-    "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/Nexa.Domain.csproj": {
+    "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/Nexa.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
         "projectName": "Nexa.Domain",
-        "projectPath": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/Nexa.Domain.csproj",
-        "packagesPath": "/home/mtwsiv004/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/obj/",
+        "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
+        "packagesPath": "C:\\Users\\SIVUYISE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/mtwsiv004/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\SIVUYISE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -32,10 +39,17 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "imports": [
             "net461",
@@ -53,34 +67,41 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.131/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Infrastructure/Nexa.Infrastructure.csproj": {
+    "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Infrastructure/Nexa.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
         "projectName": "Nexa.Infrastructure",
-        "projectPath": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Infrastructure/Nexa.Infrastructure.csproj",
-        "packagesPath": "/home/mtwsiv004/.nuget/packages/",
-        "outputPath": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Infrastructure/obj/",
+        "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\SIVUYISE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "/home/mtwsiv004/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\SIVUYISE\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
+            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/Nexa.Domain.csproj": {
-                "projectPath": "/mnt/c/Users/SIVUYISE/Nexa/Backend/Nexa.Domain/Nexa.Domain.csproj"
+              "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {
+                "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj"
               }
             }
           }
@@ -89,12 +110,23 @@
           "warnAsError": [
             "NU1605"
           ]
-        }
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "10.0.400"
       },
       "frameworks": {
         "net8.0": {
+          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.86, )"
+            },
             "Google.Apis": {
               "target": "Package",
               "version": "[1.75.0, )"
@@ -129,6 +161,10 @@
               "target": "Package",
               "version": "[10.0.12, )"
             },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[10.0.3, )"
+            },
             "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.0, )"
@@ -150,7 +186,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.131/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
