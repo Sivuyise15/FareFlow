@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using Nexa.Core.Services;
 using Nexa.Infrastructure.Email;
+using Nexa.Infrastructure.Persistence;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
+using System;
 
 namespace Nexa.API
 {
@@ -8,6 +12,10 @@ namespace Nexa.API
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            // register the DbContext with PostgreSQL provider
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             // Add services to the container.
 
@@ -19,6 +27,7 @@ namespace Nexa.API
             // Services
             builder.Services.AddScoped<ConnectEmailAccountService>();
 
+            
             // Repositories
 
             // Gmail

@@ -31,16 +31,16 @@ public class ConnectEmailAccountService
         // 2. tokens now contains the access token, refresh token, and expiration time. You can use these tokens to make authenticated requests to Gmail on behalf of the user.
         // We also have to store these tokens securely in our database for future use, especially the refresh token, which allows us to obtain new access tokens without requiring the user to re-authenticate.
 
-        // 3. Build the EmailAccount entity
-        // var emailAccount = new EmailAccount
-        // {
-        //     user = await _userRepository.GetByIdAsync(userId),
-        //     emailAddress = emailAddress,
-        //     accessToken = tokens.accessToken,
-        //     refreshToken = tokens.refreshToken,
-        //     tokenExpiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
-        //     provider = ProviderType.Gmail
-        // };
+        // 3.Build the EmailAccount entity
+        /*var emailAccount = new EmailAccount
+        {
+            user = await _userRepository.GetByIdAsync(userId),
+            emailAddress = emailAddress,
+            accessToken = tokens.accessToken,
+            refreshToken = tokens.refreshToken,
+            tokenExpiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
+            provider = ProviderType.Gmail
+        };*/
 
         // // 4. Save to database
         // await _emailAccountRepository.SaveAsync(emailAccount);
