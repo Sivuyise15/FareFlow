@@ -1,7 +1,7 @@
 using Nexa.Domain.Entities;
 using Nexa.Infrastructure.Email;
 using Nexa.Domain.Shared;
-using Nexa.Infrastructure.Persistent;
+using Nexa.Infrastructure.Persistence;
 using Nexa.Domain.Interfaces;
 
 namespace Nexa.Core.Services;
@@ -32,9 +32,9 @@ public class ConnectEmailAccountService
         Console.WriteLine($"Expires In: {tokens.expiry} seconds");
 
         // 3.Build the EmailAccount entity
-        var emailAccount = new EmailAccount
+        var emailAccount = new EmailAccount()
         {
-            user = await _userRepository.GetByIdAsync(userId),
+            user = await _userRepository.GetUserByIdAsync(userId),
             emailAddress = emailAddress,
             accessToken = tokens.accessToken,
             refreshToken = tokens.refreshToken,
@@ -42,7 +42,10 @@ public class ConnectEmailAccountService
             provider = ProviderType.Gmail
         };
 
+        Console.WriteLine($"Email account for user {userId} created successfully.");
+
         // // 4. Save to database
         await _emailAccountRepository.SaveAsync(emailAccount);
+        Console.WriteLine($"Email account for user {userId} saved successfully.");
     }
 }

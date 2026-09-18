@@ -1,5 +1,6 @@
 using Nexa.Domain.Entities;
 using Nexa.Domain.Interfaces;
+using Nexa.Infrastructure.Email;
 
 namespace Nexa.Core.Services;
 
@@ -22,16 +23,16 @@ public class ProcessEmailReceiptsService
         _parsers = parsers;
     }
 
-    public async Task HandleEmailReceiptsAsync()
-    {
-        var emailAccounts = await _emailAccountRepository.GetAllAsync();  // All users with connected emails
-        var from = DateTime.UtcNow.AddHours(-24);  // The 24 hour window for fetching emails
+    //public async Task HandleEmailReceiptsAsync()
+    //{
+    //    var emailAccounts = await _emailAccountRepository.GetAllAsync();  // All users with connected emails
+    //    var from = DateTime.UtcNow.AddHours(-24);  // The 24 hour window for fetching emails
 
-        foreach (var account in emailAccounts)
-        {
-            await ProcessAccountAsync(account, from);
-        }
-    }
+    //    foreach (var account in emailAccounts)
+    //    {
+    //        await ProcessAccountAsync(account, from);
+    //    }
+    //}
 
     private async Task ProcessAccountAsync(EmailAccount account, DateTime from)
     {

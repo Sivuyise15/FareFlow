@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Nexa.Core.Services;
+using Nexa.Domain.Interfaces;
 using Nexa.Infrastructure.Email;
 using Nexa.Infrastructure.Persistence;
 using Npgsql.EntityFrameworkCore.PostgreSQL;
@@ -24,15 +25,16 @@ namespace Nexa.API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+            // Repositories
+            builder.Services.AddScoped<IEmailAccountRepository, EmailAccountRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
+
             // Services
             builder.Services.AddScoped<ConnectEmailAccountService>();
-
-            
-            // Repositories
+            //builder.Services.AddScoped<ProcessEmailReceiptsService>();
 
             // Gmail
             builder.Services.AddScoped<IGmailClient, GmailClient>();
-            builder.Services.AddScoped<Nexa.Domain.Interfaces.IGmailClient, GmailClient>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

@@ -1,5 +1,5 @@
 ﻿using Nexa.Domain.Entities;
-using Nexa.Infrastructure.Interfaces;
+using Nexa.Domain.Interfaces;
 using Dapper;
 using Npgsql;
 using System;
@@ -8,21 +8,22 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
-namespace Nexa.Infrastructure.Persistent
+namespace Nexa.Infrastructure.Persistence
 {
-    internal class UserRepository: IUserRepository
+    public class UserRepository: IUserRepository
     {
         private readonly string _connectionString;
-        public UserRepository(String connectionString)
+        public UserRepository(IConfiguration configuration)
         {
-            _connectionString = connectionString;
+            _connectionString = configuration.GetConnectionString("DefaultConnection");
         }
 
         // creating a new postgresql connection using the connection string
         private IDbConnection CreateConnection() => new NpgsqlConnection(_connectionString);
 
-        public async Task<User> GetByIdAsync(string userId)
+        public async Task<User> GetUserByIdAsync(int userId)
         {
             string query = "SELECT * FROM Users WHERE Id = @Id";
 
@@ -30,13 +31,7 @@ namespace Nexa.Infrastructure.Persistent
             {
                 throw new ArgumentNullException(nameof(userId));
             }
-
-            if (userId.Length == 0)
-            {
-                throw new ArgumentException("User ID cannot be empty");
-            }
-
-            if (int.TryParse(userId, out int userIdInt) && userIdInt < 0)
+            if (int.TryParse(userId.ToString(), out int userIdInt) && userIdInt < 0)
             {
                 throw new ArgumentException("User ID cannot be negative");
             }
@@ -48,6 +43,7 @@ namespace Nexa.Infrastructure.Persistent
             catch (Exception ex)
             {
                 Console.WriteLine($"An error occurred while fetching the user: {ex.Message}");
+                throw;
             }
         }
     }
