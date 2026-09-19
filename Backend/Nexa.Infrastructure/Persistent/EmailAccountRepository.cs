@@ -25,13 +25,7 @@ namespace Nexa.Infrastructure.Persistence
                 await connection.OpenAsync();
                 var query = @"
                     INSERT INTO ""EmailAccounts"" (userid, email_address, access_token, refresh_token, token_expiry, provider)
-                    VALUES (@userid, @email_address, @access_token, @refresh_token, @token_expiry, @Provider)
-                    ON CONFLICT (userid) DO UPDATE
-                    SET EmailAddress = EXCLUDED.email_address,
-                        AccessToken = EXCLUDED.access_token,
-                        RefreshToken = EXCLUDED.refresh_token,
-                        TokenExpiry = EXCLUDED.token_expiry,
-                        Provider = EXCLUDED.provider;";
+                    VALUES (@userid, @email_address, @access_token, @refresh_token, @token_expiry, @Provider);";
                 using (var command = new Npgsql.NpgsqlCommand(query, connection))
                 {
                     command.Parameters.AddWithValue("@userid", emailAccount.user.id);
