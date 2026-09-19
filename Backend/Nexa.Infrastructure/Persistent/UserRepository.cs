@@ -17,15 +17,44 @@ namespace Nexa.Infrastructure.Persistence
         private readonly string _connectionString;
         public UserRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
         // creating a new postgresql connection using the connection string
         private IDbConnection CreateConnection() => new NpgsqlConnection(_connectionString);
 
+        public Task SaveUserAsync(User user)
+        {
+            string query = @"
+                INSERT INTO ""Users"" (id, email, name, surname)
+                VALUES (@Id, @Email, @Name, @Surname)
+                RETURNING *;";
+            try
+            {
+                using var connection = CreateConnection();
+                var result = connection.QuerySingleOrDefault<User>(query, new
+                {
+                    Id = user.id,
+                    Email = user.email,
+                    Name = user.name,
+                    Surname = user.surname
+                });
+                if (result == null)
+                {
+                    throw new Exception("Failed to save the user.");
+                }
+                return Task.FromResult(result);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred while saving the user: {ex.Message}");
+                throw;
+            }
+        }
+
         public async Task<User> GetUserByIdAsync(int userId)
         {
-            string query = "SELECT * FROM Users WHERE Id = @Id";
+            string query = "SELECT * FROM \"Users\" WHERE id = @Id";
 
             if (userId == null)
             {

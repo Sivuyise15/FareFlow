@@ -20,7 +20,9 @@ public class EmailAccountsController : ControllerBase
         await _connectService.ExecuteAsync(
             request.UserId,
             request.AuthCode,
-            request.EmailAddress);
+            request.EmailAddress,
+            request.Name,
+            request.Surname);
 
         return Ok("Email account connected successfully");
     }
@@ -31,4 +33,6 @@ public class ConnectEmailRequest
     public int UserId { get; set; }
     public string AuthCode { get; set; }
     public string EmailAddress { get; set; }
+    public string? Name { get; set; }
+    public string? Surname { get; set; }
 }

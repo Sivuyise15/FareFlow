@@ -15,7 +15,7 @@ namespace Nexa.Infrastructure.Persistence
         private readonly string _connectionString;
         public EmailAccountRepository(IConfiguration configuration)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
         public async Task SaveAsync(EmailAccount emailAccount)
@@ -24,21 +24,21 @@ namespace Nexa.Infrastructure.Persistence
             {
                 await connection.OpenAsync();
                 var query = @"
-                    INSERT INTO EmailAccounts (userid, emailAddress, accessToken, refreshToken, tokenExpiry, provider)
-                    VALUES (@UserId, @EmailAddress, @AccessToken, @RefreshToken, @TokenExpiry, @Provider)
+                    INSERT INTO ""EmailAccounts"" (userid, email_address, access_token, refresh_token, token_expiry, provider)
+                    VALUES (@userid, @email_address, @access_token, @refresh_token, @token_expiry, @Provider)
                     ON CONFLICT (userid) DO UPDATE
-                    SET EmailAddress = EXCLUDED.emailAddress,
-                        AccessToken = EXCLUDED.accessToken,
-                        RefreshToken = EXCLUDED.refreshToken,
-                        TokenExpiry = EXCLUDED.tokenExpiry,
+                    SET EmailAddress = EXCLUDED.email_address,
+                        AccessToken = EXCLUDED.access_token,
+                        RefreshToken = EXCLUDED.refresh_token,
+                        TokenExpiry = EXCLUDED.token_expiry,
                         Provider = EXCLUDED.provider;";
                 using (var command = new Npgsql.NpgsqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@UserId", emailAccount.user.id);
-                    command.Parameters.AddWithValue("@EmailAddress", emailAccount.emailAddress);
-                    command.Parameters.AddWithValue("@AccessToken", emailAccount.accessToken);
-                    command.Parameters.AddWithValue("@RefreshToken", emailAccount.refreshToken);
-                    command.Parameters.AddWithValue("@TokenExpiry", emailAccount.tokenExpiry);
+                    command.Parameters.AddWithValue("@userid", emailAccount.user.id);
+                    command.Parameters.AddWithValue("@email_address", emailAccount.email_address);
+                    command.Parameters.AddWithValue("@access_token", emailAccount.access_token);
+                    command.Parameters.AddWithValue("@refresh_token", emailAccount.refresh_token);
+                    command.Parameters.AddWithValue("@token_expiry", emailAccount.token_expiry);
                     command.Parameters.AddWithValue("@Provider", emailAccount.provider.ToString());
                     await command.ExecuteNonQueryAsync();
                 }

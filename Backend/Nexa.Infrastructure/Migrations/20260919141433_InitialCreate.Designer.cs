@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Nexa.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260918185801_InitialCreate")]
+    [Migration("20260919141433_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -33,21 +33,21 @@ namespace Nexa.Infrastructure.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("id"));
 
-                    b.Property<string>("accessToken")
+                    b.Property<string>("access_token")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("emailAddress")
+                    b.Property<string>("email_address")
                         .HasColumnType("text");
 
                     b.Property<string>("provider")
                         .HasColumnType("text");
 
-                    b.Property<string>("refreshToken")
+                    b.Property<string>("refresh_token")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("tokenExpiry")
+                    b.Property<DateTime?>("token_expiry")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int?>("userid")
@@ -73,11 +73,9 @@ namespace Nexa.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("surname")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("id");

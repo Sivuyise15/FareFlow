@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nexa.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+229578717fd83769e116b002e76b5578a7fb57c5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0fa217dac1e4cc48b62dd2b11791f5bcef4f1071")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nexa.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nexa.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

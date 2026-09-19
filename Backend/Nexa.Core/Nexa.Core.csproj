@@ -12,5 +12,8 @@
   <ItemGroup>
     <PackageReference Include="Google.Apis.Auth" Version="1.75.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
 
 </Project>

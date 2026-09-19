@@ -23,7 +23,7 @@ public class ConnectEmailAccountService
         _userRepository = userRepository;
     }
 
-    public async Task ExecuteAsync(int userId, string authCode, string emailAddress)
+    public async Task ExecuteAsync(int userId, string authCode, string emailAddress, string? name, string? surname)
     {
         // 1. Exchange the auth code Google sent to mobile for real tokens
         OAuthToken tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode);
@@ -31,14 +31,24 @@ public class ConnectEmailAccountService
         Console.WriteLine($"Refresh Token: {tokens.refreshToken}");
         Console.WriteLine($"Expires In: {tokens.expiry} seconds");
 
+        // 2. Save the user's email account information to the database
+        var user = new User
+        {
+            id = userId,
+            email = emailAddress,
+            name = name,
+            surname = surname
+        };
+        await _userRepository.SaveUserAsync(user);
+
         // 3.Build the EmailAccount entity
         var emailAccount = new EmailAccount()
         {
             user = await _userRepository.GetUserByIdAsync(userId),
-            emailAddress = emailAddress,
-            accessToken = tokens.accessToken,
-            refreshToken = tokens.refreshToken,
-            tokenExpiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
+            email_address = emailAddress,
+            access_token = tokens.accessToken,
+            refresh_token = tokens.refreshToken,
+            token_expiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
             provider = ProviderType.Gmail
         };
 

@@ -38,7 +38,7 @@ public class ProcessEmailReceiptsService
     {
         try
         {
-            var rawEmails = await _gmailClient.FetchRideReceiptsAsync(account.accessToken, from);
+            var rawEmails = await _gmailClient.FetchRideReceiptsAsync(account.access_token, from);
             foreach (var rawEmail in rawEmails)
             {
                 var exists = await _tripRepository.ExistsByEmailMessageIdAsync(rawEmail.messageId);
