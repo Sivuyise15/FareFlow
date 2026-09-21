@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "RXpbeZ4qhGM=",
+  "dgSpecHash": "RXabCuXvpyQ=",
   "success": true,
-  "projectFilePath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+  "projectFilePath": "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\dapper\\2.1.86\\dapper.2.1.86.nupkg.sha512",
     "C:\\Users\\SIVUYISE\\.nuget\\packages\\google.apis\\1.75.0\\google.apis.1.75.0.nupkg.sha512",
@@ -115,9 +115,9 @@
       "code": "NU1603",
       "level": "Warning",
       "message": "Nexa.Infrastructure depends on Google.Apis.Gmail.v1 (>= 1.75.0) but Google.Apis.Gmail.v1 1.75.0 was not found. Google.Apis.Gmail.v1 1.75.0.4225 was resolved instead.",
-      "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+      "projectPath": "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
       "warningLevel": 1,
-      "filePath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
+      "filePath": "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Infrastructure\\Nexa.Infrastructure.csproj",
       "libraryId": "Google.Apis.Gmail.v1",
       "targetGraphs": [
         "net8.0"

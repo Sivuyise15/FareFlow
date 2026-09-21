@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {}
+    "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {
+    "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
         "projectName": "Nexa.Domain",
-        "projectPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
+        "projectPath": "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Domain\\Nexa.Domain.csproj",
         "packagesPath": "C:\\Users\\SIVUYISE\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SIVUYISE\\Nexa\\Nexa\\Backend\\Nexa.Domain\\obj\\",
+        "outputPath": "C:\\Users\\SIVUYISE\\NeXA\\Nexa\\Backend\\Nexa.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

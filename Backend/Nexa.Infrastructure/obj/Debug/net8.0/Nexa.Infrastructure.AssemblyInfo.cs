@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Nexa.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9868a92c3f58616279a409e132e51091448f792d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d97b8bb8bfed91ee07e7b95431f22a05f22533e0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Nexa.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Nexa.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
