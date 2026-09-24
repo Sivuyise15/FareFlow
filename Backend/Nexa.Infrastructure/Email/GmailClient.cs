@@ -49,7 +49,7 @@ public class GmailClient : IGmailClient
         var token = await flow.ExchangeCodeForTokenAsync(
             TokenStoreUserId,
             authCode,
-            "https://developers.google.com/oauthplayground",  //the redirect uri used in the OAuth2 flow
+            "http://localhost:8081/",  //the redirect uri used in the OAuth2 flow
             CancellationToken.None);
 
         return new OAuthToken
