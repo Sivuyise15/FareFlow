@@ -42,14 +42,14 @@ public class GmailClient : IGmailClient
             });
     }
 
-    public async Task<OAuthToken> ExchangeCodeForTokensAsync(string authCode)
+    public async Task<OAuthToken> ExchangeCodeForTokensAsync(string authCode, string redirectUri)
     {
         var flow = CreateAuthorizationCodeFlow();
 
         var token = await flow.ExchangeCodeForTokenAsync(
             TokenStoreUserId,
             authCode,
-            "http://localhost:8081/",  //the redirect uri used in the OAuth2 flow
+            redirectUri,
             CancellationToken.None);
 
         return new OAuthToken

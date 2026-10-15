@@ -23,10 +23,10 @@ public class ConnectEmailAccountService
         _userRepository = userRepository;
     }
 
-    public async Task ExecuteAsync(int userId, string authCode, string emailAddress, string? name, string? surname)
+    public async Task ExecuteAsync(int userId, string authCode, string redirectUri, string emailAddress, string? name, string? surname)
     {
         // 1. Exchange the auth code Google sent to mobile for real tokens
-        OAuthToken tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode);
+        OAuthToken tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode, redirectUri);
         Console.WriteLine($"Access Token: {tokens.accessToken}");
         Console.WriteLine($"Refresh Token: {tokens.refreshToken}");
         Console.WriteLine($"Expires In: {tokens.expiry} seconds");

@@ -62,9 +62,16 @@ public class EmailAccountsController : ControllerBase
     [HttpPost("google/callback")]
     public async Task<IActionResult> Connect([FromBody] ConnectEmailRequest request)
     {
+        if (string.IsNullOrWhiteSpace(request.Code))
+            return BadRequest("code is required.");
+
+        if (string.IsNullOrWhiteSpace(request.RedirectUri))
+            return BadRequest("redirectUri is required.");
+
         await _connectService.ExecuteAsync(
             request.UserId,
-            request.AuthCode,
+            request.Code,
+            request.RedirectUri,
             request.EmailAddress,
             request.Name,
             request.Surname);
@@ -76,7 +83,8 @@ public class EmailAccountsController : ControllerBase
 public class ConnectEmailRequest
 {
     public int UserId { get; set; }
-    public string AuthCode { get; set; }
+    public string Code { get; set; }
+    public string RedirectUri { get; set; }
     public string EmailAddress { get; set; }
     public string? Name { get; set; }
     public string? Surname { get; set; }
