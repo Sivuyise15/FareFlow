@@ -90,7 +90,7 @@ function RootNavigator() {
     if (status === 'unauthenticated' && !inAuthGroup) {
       router.replace('/sign-in');
     } else if (status === 'authenticated' && inAuthGroup) {
-      router.replace('/(tabs)');
+      router.replace('./(tabs)');
     }
   }, [navReady, status, segments, router]);
 

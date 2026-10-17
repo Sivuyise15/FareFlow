@@ -47,6 +47,14 @@ namespace Nexa.API
 
             // Add services to the container.
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("ExpoWeb", policy =>
+                    policy.WithOrigins("http://localhost:8081")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod());
+            });
+
             builder.Services.AddControllers();
             builder.Services.AddAuthorization();
             builder.Services.AddMemoryCache();
@@ -76,6 +84,7 @@ namespace Nexa.API
 
             //app.UseHttpsRedirection();
 
+            app.UseCors("ExpoWeb");
             app.UseAuthentication();
             app.UseAuthorization();
 

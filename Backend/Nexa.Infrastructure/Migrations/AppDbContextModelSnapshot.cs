@@ -51,7 +51,8 @@ namespace Nexa.Infrastructure.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("userid");
+                    b.HasIndex("userid")
+                        .IsUnique();
 
                     b.ToTable("EmailAccounts");
                 });
@@ -79,6 +80,9 @@ namespace Nexa.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("id");
+
+                    b.HasIndex("google_subject")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

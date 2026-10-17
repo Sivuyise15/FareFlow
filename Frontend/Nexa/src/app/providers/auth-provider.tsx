@@ -1,5 +1,6 @@
-import * as SecureStore from 'expo-secure-store';
 import type { Session } from '@/api/types';
+import { SESSION_KEY } from '@/constants/config';
+import { deleteSessionItem, getSessionItem, setSessionItem } from '@/storage/session-storage';
 import {
     createContext,
     useCallback,
@@ -9,8 +10,6 @@ import {
     useState,
     type ReactNode,
 } from 'react';
-
-const SESSION_KEY = 'nexa.session';
 
 type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';
 
@@ -33,7 +32,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     (async () => {
       try {
-        const raw = await SecureStore.getItemAsync(SESSION_KEY);
+        const raw = await getSessionItem(SESSION_KEY);
         if (cancelled) return;
 
         if (raw) {
@@ -53,13 +52,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const signIn = useCallback(async (next: Session) => {
-    await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(next));
+    await setSessionItem(SESSION_KEY, JSON.stringify(next));
     setSession(next);
     setStatus('authenticated');
   }, []);
 
   const signOut = useCallback(async () => {
-    await SecureStore.deleteItemAsync(SESSION_KEY);
+    await deleteSessionItem(SESSION_KEY);
     setSession(null);
     setStatus('unauthenticated');
   }, []);

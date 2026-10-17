@@ -1,6 +1,5 @@
-import * as SecureStore from 'expo-secure-store';
-
 import { API_URL, SESSION_KEY } from '@/constants/config';
+import { getSessionItem } from '@/storage/session-storage';
 import type { Session } from './types';
 
 export class ApiError extends Error {
@@ -38,7 +37,7 @@ export function buildUrl(path: string, query?: RequestOptions['query']) {
 
 async function readAccessToken(): Promise<string | null> {
   try {
-    const raw = await SecureStore.getItemAsync(SESSION_KEY);
+    const raw = await getSessionItem(SESSION_KEY);
     return raw ? ((JSON.parse(raw) as Session).accessToken ?? null) : null;
   } catch {
     return null;

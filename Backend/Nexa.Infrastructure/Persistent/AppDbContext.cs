@@ -12,6 +12,14 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<User>()
+            .HasIndex(user => user.google_subject)
+            .IsUnique();
+
+        modelBuilder.Entity<EmailAccount>()
+            .HasIndex("userid")
+            .IsUnique();
+
         modelBuilder.Entity<EmailAccount>()
             .Property(e => e.provider)
             .HasConversion<string>();

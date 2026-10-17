@@ -4,6 +4,7 @@ export const colors = {
   surface: '#FFFFFF',
   surfaceMuted: '#F6F7F9',
   surfaceInset: '#FFFFFF',
+  surfaceButton: '#F1F2F4',
 
   // text
   textPrimary: '#0B0B0F',
@@ -13,6 +14,13 @@ export const colors = {
   // brand
   accent: '#1D6DF0',
   accentSoft: '#EAF1FE',
+  accentTrack: '#BFD5F8',
+
+  // status
+  danger: '#DC2626',
+  dangerText: '#B4474D',
+  dangerSoft: '#FDECEC',
+  dangerBorder: '#F7C9C9',
 
   // borders
   border: '#ECEDF0',
