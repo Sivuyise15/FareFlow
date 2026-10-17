@@ -4,6 +4,6 @@ namespace Nexa.Domain.Interfaces;
 
 public interface IUserRepository
 {
-    Task SaveUserAsync(User user);
-    Task<User> GetUserByIdAsync(int userId);
+    Task<User> FindOrCreateGoogleUserAsync(string googleSubject, string email, string? name, string? surname);
+    Task<User?> GetUserByIdAsync(int userId);
 }

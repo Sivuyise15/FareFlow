@@ -1,12 +1,14 @@
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Auth.OAuth2.Responses;
+using Google.Apis.Auth;
 using Microsoft.Extensions.Configuration;
 using Google.Apis.Gmail.v1;
 using Google.Apis.Gmail.v1.Data;
 using Google.Apis.Services;
 using Nexa.Domain.Entities;
 using System.Text;
+using System.Net.Http;
 
 namespace Nexa.Infrastructure.Email;
 
@@ -37,8 +39,10 @@ public class GmailClient : IGmailClient
                     ClientId = _clientId,
                     ClientSecret = _clientSecret
                 },
-                Scopes = new[] { "https://www.googleapis.com/auth/gmail.readonly",
-                                "https://www.googleapis.com/auth/userinfo.email" }
+                Scopes = new[] { "openid",
+                                "email",
+                                "profile",
+                                "https://www.googleapis.com/auth/gmail.readonly" }
             });
     }
 
@@ -56,8 +60,47 @@ public class GmailClient : IGmailClient
         {
             accessToken = token.AccessToken,
             refreshToken = token.RefreshToken,
+            idToken = token.IdToken,
             expiry = (int)(token.ExpiresInSeconds ?? 0)
         };
+    }
+
+    public async Task<GoogleIdentity> ValidateGoogleIdentityAsync(string idToken)
+    {
+        var payload = await GoogleJsonWebSignature.ValidateAsync(
+            idToken,
+            new GoogleJsonWebSignature.ValidationSettings
+            {
+                Audience = new[] { _clientId }
+            });
+
+        if (string.IsNullOrWhiteSpace(payload.Subject) ||
+            string.IsNullOrWhiteSpace(payload.Email) ||
+            !payload.EmailVerified)
+        {
+            throw new InvalidOperationException("Google did not return a verified email identity.");
+        }
+
+        return new GoogleIdentity
+        {
+            Subject = payload.Subject,
+            Email = payload.Email,
+            GivenName = payload.GivenName,
+            FamilyName = payload.FamilyName
+        };
+    }
+
+    public async Task RevokeTokenAsync(string token)
+    {
+        using var client = new HttpClient();
+        using var response = await client.PostAsync(
+            "https://oauth2.googleapis.com/revoke",
+            new FormUrlEncodedContent(new Dictionary<string, string>
+            {
+                ["token"] = token
+            }));
+
+        response.EnsureSuccessStatusCode();
     }
 
     public async Task<OAuthToken> RefreshAccessTokenAsync(string refreshToken)

@@ -1,4 +1,5 @@
 import * as SecureStore from 'expo-secure-store';
+import type { Session } from '@/api/types';
 import {
     createContext,
     useCallback,
@@ -10,17 +11,6 @@ import {
 } from 'react';
 
 const SESSION_KEY = 'nexa.session';
-
-export type Session = {
-  accessToken: string;
-  refreshToken?: string;
-  expiresAt?: string;
-  user: {
-    id: string;
-    email: string;
-    provider: 'google' | 'microsoft';
-  };
-};
 
 type AuthStatus = 'loading' | 'authenticated' | 'unauthenticated';
 

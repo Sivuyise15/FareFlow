@@ -23,39 +23,53 @@ public class ConnectEmailAccountService
         _userRepository = userRepository;
     }
 
-    public async Task ExecuteAsync(int userId, string authCode, string redirectUri, string emailAddress, string? name, string? surname)
+    public async Task<User> ConnectGoogleAccountAsync(string authCode, string redirectUri)
     {
-        // 1. Exchange the auth code Google sent to mobile for real tokens
         OAuthToken tokens = await _gmailClient.ExchangeCodeForTokensAsync(authCode, redirectUri);
-        Console.WriteLine($"Access Token: {tokens.accessToken}");
-        Console.WriteLine($"Refresh Token: {tokens.refreshToken}");
-        Console.WriteLine($"Expires In: {tokens.expiry} seconds");
+        if (string.IsNullOrWhiteSpace(tokens.idToken))
+            throw new InvalidOperationException("Google did not return an identity token.");
 
-        // 2. Save the user's email account information to the database
-        var user = new User
-        {
-            id = userId,
-            email = emailAddress,
-            name = name,
-            surname = surname
-        };
-        await _userRepository.SaveUserAsync(user);
+        var identity = await _gmailClient.ValidateGoogleIdentityAsync(tokens.idToken);
+        var user = await _userRepository.FindOrCreateGoogleUserAsync(
+            identity.Subject,
+            identity.Email,
+            identity.GivenName,
+            identity.FamilyName);
 
-        // 3.Build the EmailAccount entity
-        var emailAccount = new EmailAccount()
+        await _emailAccountRepository.UpsertAsync(new EmailAccount
         {
-            user = await _userRepository.GetUserByIdAsync(userId),
-            email_address = emailAddress,
+            user = user,
+            email_address = identity.Email,
             access_token = tokens.accessToken,
             refresh_token = tokens.refreshToken,
             token_expiry = DateTime.UtcNow.AddSeconds(tokens.expiry == 0 ? 3600 : tokens.expiry),
             provider = ProviderType.Gmail
-        };
+        });
 
-        Console.WriteLine($"Email account for user {userId} created successfully.");
+        return user;
+    }
 
-        // // 4. Save to database
-        await _emailAccountRepository.SaveAsync(emailAccount);
-        Console.WriteLine($"Email account for user {userId} saved successfully.");
+    public Task<EmailAccount?> GetGoogleAccountAsync(int userId)
+    {
+        return _emailAccountRepository.GetByUserIdAsync(userId);
+    }
+
+    public async Task DisconnectGoogleAccountAsync(int userId)
+    {
+        var account = await _emailAccountRepository.GetByUserIdAsync(userId);
+        if (account is null)
+            return;
+
+        try
+        {
+            var token = account.refresh_token ?? account.access_token;
+            if (!string.IsNullOrWhiteSpace(token))
+                await _gmailClient.RevokeTokenAsync(token);
+        }
+        catch (HttpRequestException)
+        {
+        }
+
+        await _emailAccountRepository.DeleteByUserIdAsync(userId);
     }
 }

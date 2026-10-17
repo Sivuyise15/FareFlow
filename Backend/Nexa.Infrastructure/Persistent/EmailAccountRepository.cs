@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Dapper;
 using Nexa.Domain.Entities;
 using Nexa.Domain.Interfaces;
 using Npgsql;
+using Microsoft.Extensions.Configuration;
 
 namespace Nexa.Infrastructure.Persistence
 {
@@ -18,25 +14,47 @@ namespace Nexa.Infrastructure.Persistence
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
-        public async Task SaveAsync(EmailAccount emailAccount)
+        public async Task UpsertAsync(EmailAccount emailAccount)
         {
-            using (var connection = new Npgsql.NpgsqlConnection(_connectionString))
+            const string query = @"
+                INSERT INTO ""EmailAccounts"" (userid, email_address, access_token, refresh_token, token_expiry, provider)
+                VALUES (@UserId, @EmailAddress, @AccessToken, @RefreshToken, @TokenExpiry, @Provider)
+                ON CONFLICT (userid) DO UPDATE SET
+                    email_address = EXCLUDED.email_address,
+                    access_token = EXCLUDED.access_token,
+                    refresh_token = COALESCE(EXCLUDED.refresh_token, ""EmailAccounts"".refresh_token),
+                    token_expiry = EXCLUDED.token_expiry,
+                    provider = EXCLUDED.provider;";
+
+            await using var connection = new NpgsqlConnection(_connectionString);
+            await connection.ExecuteAsync(query, new
             {
-                await connection.OpenAsync();
-                var query = @"
-                    INSERT INTO ""EmailAccounts"" (userid, email_address, access_token, refresh_token, token_expiry, provider)
-                    VALUES (@userid, @email_address, @access_token, @refresh_token, @token_expiry, @Provider);";
-                using (var command = new Npgsql.NpgsqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@userid", emailAccount.user.id);
-                    command.Parameters.AddWithValue("@email_address", emailAccount.email_address);
-                    command.Parameters.AddWithValue("@access_token", emailAccount.access_token);
-                    command.Parameters.AddWithValue("@refresh_token", emailAccount.refresh_token);
-                    command.Parameters.AddWithValue("@token_expiry", emailAccount.token_expiry);
-                    command.Parameters.AddWithValue("@Provider", emailAccount.provider.ToString());
-                    await command.ExecuteNonQueryAsync();
-                }
-            }
+                UserId = emailAccount.user!.id,
+                EmailAddress = emailAccount.email_address,
+                AccessToken = emailAccount.access_token,
+                RefreshToken = emailAccount.refresh_token,
+                TokenExpiry = emailAccount.token_expiry,
+                Provider = emailAccount.provider.ToString()
+            });
+        }
+
+        public async Task<EmailAccount?> GetByUserIdAsync(int userId)
+        {
+            const string query = @"
+                SELECT id, email_address, access_token, refresh_token, token_expiry, provider
+                FROM ""EmailAccounts""
+                WHERE userid = @UserId;";
+
+            await using var connection = new NpgsqlConnection(_connectionString);
+            return await connection.QuerySingleOrDefaultAsync<EmailAccount>(query, new { UserId = userId });
+        }
+
+        public async Task DeleteByUserIdAsync(int userId)
+        {
+            const string query = "DELETE FROM \"EmailAccounts\" WHERE userid = @UserId;";
+
+            await using var connection = new NpgsqlConnection(_connectionString);
+            await connection.ExecuteAsync(query, new { UserId = userId });
         }
     }
 }

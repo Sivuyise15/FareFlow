@@ -1,4 +1,4 @@
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import {
   Pressable,
@@ -13,14 +13,12 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors } from '@/theme/colors';
 
-type Provider = 'google' | 'microsoft';
-
 export default function SignInScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
-  const connect = (provider: Provider) => {
-    router.push({ pathname: '/connect-gmail', params: { provider } });
+  const connect = () => {
+    router.push('/connect-gmail');
   };
 
   return (
@@ -48,22 +46,10 @@ export default function SignInScreen() {
 
       <View style={styles.providers}>
         <ProviderButton
-          label="Connect Gmail"
+          label="Continue with Google"
           tint={colors.gmail}
-          icon={<Ionicons name="mail" size={20} color={colors.white} />}
-          onPress={() => connect('google')}
-        />
-        <ProviderButton
-          label="Connect Outlook"
-          tint={colors.outlook}
-          icon={
-            <MaterialCommunityIcons
-              name="microsoft-outlook"
-              size={20}
-              color={colors.white}
-            />
-          }
-          onPress={() => connect('microsoft')}
+          icon={<Ionicons name="logo-google" size={20} color={colors.white} />}
+          onPress={connect}
         />
       </View>
 

@@ -3,11 +3,6 @@ using Nexa.Domain.Interfaces;
 using Dapper;
 using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 
 namespace Nexa.Infrastructure.Persistence
@@ -20,60 +15,33 @@ namespace Nexa.Infrastructure.Persistence
             _connectionString = configuration["ConnectionStrings:DefaultConnection"];
         }
 
-        // creating a new postgresql connection using the connection string
-        private IDbConnection CreateConnection() => new NpgsqlConnection(_connectionString);
-
-        public Task SaveUserAsync(User user)
+        public async Task<User> FindOrCreateGoogleUserAsync(string googleSubject, string email, string? name, string? surname)
         {
             string query = @"
-                INSERT INTO ""Users"" (id, email, name, surname)
-                VALUES (@Id, @Email, @Name, @Surname)
+                INSERT INTO ""Users"" (google_subject, email, name, surname)
+                VALUES (@GoogleSubject, @Email, @Name, @Surname)
+                ON CONFLICT (google_subject) DO UPDATE
+                SET email = EXCLUDED.email,
+                    name = COALESCE(EXCLUDED.name, ""Users"".name),
+                    surname = COALESCE(EXCLUDED.surname, ""Users"".surname)
                 RETURNING *;";
-            try
+
+            await using var connection = new NpgsqlConnection(_connectionString);
+            return await connection.QuerySingleAsync<User>(query, new
             {
-                using var connection = CreateConnection();
-                var result = connection.QuerySingleOrDefault<User>(query, new
-                {
-                    Id = user.id,
-                    Email = user.email,
-                    Name = user.name,
-                    Surname = user.surname
-                });
-                if (result == null)
-                {
-                    throw new Exception("Failed to save the user.");
-                }
-                return Task.FromResult(result);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while saving the user: {ex.Message}");
-                throw;
-            }
+                GoogleSubject = googleSubject,
+                Email = email,
+                Name = name,
+                Surname = surname
+            });
         }
 
-        public async Task<User> GetUserByIdAsync(int userId)
+        public async Task<User?> GetUserByIdAsync(int userId)
         {
             string query = "SELECT * FROM \"Users\" WHERE id = @Id";
 
-            if (userId == null)
-            {
-                throw new ArgumentNullException(nameof(userId));
-            }
-            if (int.TryParse(userId.ToString(), out int userIdInt) && userIdInt < 0)
-            {
-                throw new ArgumentException("User ID cannot be negative");
-            }
-            try
-            {
-                using var connection = CreateConnection();
-                return await connection.QuerySingleOrDefaultAsync<User>(query, new { Id = userId });
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"An error occurred while fetching the user: {ex.Message}");
-                throw;
-            }
+            await using var connection = new NpgsqlConnection(_connectionString);
+            return await connection.QuerySingleOrDefaultAsync<User>(query, new { Id = userId });
         }
     }
 }

@@ -1,7 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import * as AuthSession from 'expo-auth-session';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import * as SecureStore from 'expo-secure-store';
+import { useRouter } from 'expo-router';
 import * as WebBrowser from 'expo-web-browser';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
@@ -13,39 +12,31 @@ import {
 } from 'react-native';
 
 import { colors } from '@/theme/colors';
+import { completeGoogleSignIn, googleStartUrl } from '@/api/endpoints/auth';
+import { useAuth } from '@/app/providers/auth-provider';
 
 WebBrowser.maybeCompleteAuthSession();
 
-// Move these into src/constants/config.ts once you have more than one.
-const API_URL = process.env.EXPO_PUBLIC_API_URL ?? 'https://172.20.214.100:5222';
-const SESSION_KEY = 'nexa.session';
-
-type Provider = 'google' | 'microsoft';
 type Phase = 'starting' | 'consent' | 'exchanging' | 'cancelled' | 'error';
-
-const PROVIDER_LABEL: Record<Provider, string> = {
-  google: 'Gmail',
-  microsoft: 'Outlook',
-};
 
 /**
  * The handoff screen.
  *
  * `sign-in.tsx` is the screen the user *sees and chooses from*. This screen is
- * what happens after they tap a provider: it opens the consent browser, waits
- * for the redirect back into the app, trades the authorisation code with
- * Nexa.API for a session, stores it, and sends the user to the tabs.
+ * what happens after they tap Continue with Google: it opens the consent browser,
+ * receives the API relay, exchanges the authorization code, and stores the Nexa session.
  *
- * It exists as a route rather than inline logic so that the OAuth redirect has
+ * It exists as a route rather than inline logic so that the 
+ * 
+ * 
+ * 
+ *  has
  * a stable place to land, and so cancel/error states have somewhere to live.
  *
- * Once you support more providers, rename this to `connect/[provider].tsx` —
- * the body barely changes, since everything already keys off `provider`.
  */
 export default function ConnectMailboxScreen() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ provider?: Provider }>();
-  const provider: Provider = params.provider === 'microsoft' ? 'microsoft' : 'google';
+  const { signIn } = useAuth();
 
   const [phase, setPhase] = useState<Phase>('starting');
   const [message, setMessage] = useState<string | null>(null);
@@ -63,9 +54,7 @@ export default function ConnectMailboxScreen() {
     try {
       const redirectUri = AuthSession.makeRedirectUri({ scheme: 'nexa', path: 'oauth' });
 
-      const startUrl =
-        `${API_URL}/api/auth/${provider}/start` +
-        `?redirectUri=${encodeURIComponent(redirectUri)}`;
+      const startUrl = googleStartUrl(redirectUri);
 
       setPhase('consent');
       const result = await WebBrowser.openAuthSessionAsync(startUrl, redirectUri);
@@ -77,46 +66,32 @@ export default function ConnectMailboxScreen() {
       
       const url = new URL(result.url);
 
-      const code = url.searchParams.get("code");
-      const state = url.searchParams.get("state");
+      const code = url.searchParams.get('code');
+      const state = url.searchParams.get('state');
+      const error = url.searchParams.get('error_description') ?? url.searchParams.get('error');
 
-
-
-
-      if (url.searchParams.get("error")) throw new Error(String(url.searchParams.get("error")));
+      if (error) throw new Error(error);
       if (!code) throw new Error('No authorisation code came back from the provider.');
+      if (!state) throw new Error('The OAuth state was missing from the provider response.');
 
       setPhase('exchanging');
+      const session = await completeGoogleSignIn({ code, state });
+      await signIn(session);
 
-      const response = await fetch(`${API_URL}/api/auth/${provider}/callback`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code, state, redirectUri }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`The server rejected the sign-in (${response.status}).`);
-      }
-
-      const session = await response.json();
-      await SecureStore.setItemAsync(SESSION_KEY, JSON.stringify(session));
-
-      router.replace('./app/(tabs)');
+      router.replace('./(tabs)');
     } catch (error) {
       setPhase('error');
       setMessage(
         error instanceof Error ? error.message : 'Something went wrong connecting your mailbox.',
       );
     }
-  }, [provider, router]);
+  }, [router, signIn]);
 
   useEffect(() => {
     if (started.current) return;
     started.current = true;
     void run();
   }, [run]);
-
-  const label = PROVIDER_LABEL[provider];
 
   return (
     <View style={styles.screen}>
@@ -141,22 +116,22 @@ export default function ConnectMailboxScreen() {
 
         <Text style={styles.title}>
           {phase === 'error'
-            ? `Couldn't connect ${label}`
+            ? "Couldn't connect Gmail"
             : phase === 'cancelled'
-              ? `${label} wasn't connected`
+              ? 'Gmail connection was cancelled'
               : phase === 'exchanging'
                 ? 'Finishing up'
-                : `Connecting ${label}`}
+                : 'Connecting Gmail'}
         </Text>
 
         <Text style={styles.detail}>
           {phase === 'error'
             ? message
-            : phase === 'cancelled'
+              : phase === 'cancelled'
               ? 'You closed the consent screen before granting access. Nothing was changed.'
               : phase === 'exchanging'
                 ? 'Setting up your mailbox sync. This takes a moment.'
-                : `A secure ${label} window will open. Grant read access so Nexa can find your ride receipts.`}
+                : 'A secure Google window will open. Sign in and grant read access so Nexa can find your ride receipts.'}
         </Text>
 
         {(phase === 'error' || phase === 'cancelled') && (

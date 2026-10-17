@@ -9,7 +9,8 @@ namespace Nexa.Domain.Entities
     public class OAuthToken
     {
         public string accessToken { get; set; }
-        public string refreshToken { get; set; }
+        public string? refreshToken { get; set; }
+        public string? idToken { get; set; }
         public int expiry { get; set; }
     }
 }

@@ -41,7 +41,6 @@ namespace Nexa.Infrastructure.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("refresh_token")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime?>("token_expiry")
@@ -66,6 +65,10 @@ namespace Nexa.Infrastructure.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("google_subject")
                         .IsRequired()
                         .HasColumnType("text");
 

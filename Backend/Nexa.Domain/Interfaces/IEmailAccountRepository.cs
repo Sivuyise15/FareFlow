@@ -4,7 +4,7 @@ namespace Nexa.Domain.Interfaces;
 
 public interface IEmailAccountRepository
 {
-    //Task<IEnumerable<EmailAccount>> GetAllAsync();
-    //Task UpdateAsync(EmailAccount emailAccount);
-    Task SaveAsync(EmailAccount emailAccount);
+    Task UpsertAsync(EmailAccount emailAccount);
+    Task<EmailAccount?> GetByUserIdAsync(int userId);
+    Task DeleteByUserIdAsync(int userId);
 }

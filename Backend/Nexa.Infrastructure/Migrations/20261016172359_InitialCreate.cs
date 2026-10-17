@@ -18,6 +18,7 @@ namespace Nexa.Infrastructure.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    google_subject = table.Column<string>(type: "text", nullable: false),
                     name = table.Column<string>(type: "text", nullable: true),
                     surname = table.Column<string>(type: "text", nullable: true),
                     email = table.Column<string>(type: "text", nullable: false)
@@ -36,7 +37,7 @@ namespace Nexa.Infrastructure.Migrations
                     userid = table.Column<int>(type: "integer", nullable: true),
                     email_address = table.Column<string>(type: "text", nullable: true),
                     access_token = table.Column<string>(type: "text", nullable: false),
-                    refresh_token = table.Column<string>(type: "text", nullable: false),
+                    refresh_token = table.Column<string>(type: "text", nullable: true),
                     token_expiry = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     provider = table.Column<string>(type: "text", nullable: true)
                 },
